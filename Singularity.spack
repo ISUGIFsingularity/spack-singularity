@@ -11,8 +11,14 @@ export SPACK_ROOT
 export PATH=$SPACK_ROOT/bin:$PATH
 source /etc/profile.d/modules.sh
 source $SPACK_ROOT/share/spack/setup-env.sh
+module load gcc
 
 %post
+
+# Speed up yum
+yum install -y yum-plugin-fastestmirror
+yum install -y deltarpm
+
 export SPACK_ROOT=/opt/spack
 export SPACK_ROOT
 export PATH=$SPACK_ROOT/bin:$PATH
@@ -41,6 +47,8 @@ echo "  tcl:" >> /opt/spack/etc/spack/modules.yaml
 echo "    naming_scheme: '\${PACKAGE}/\${VERSION}'" >> /opt/spack/etc/spack/modules.yaml
 
 source $SPACK_ROOT/share/spack/setup-env.sh
+
+spack install gcc@6.5.0
 
 %runscript
 spack help
