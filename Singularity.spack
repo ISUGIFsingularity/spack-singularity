@@ -1,5 +1,6 @@
 Bootstrap:docker
-From:centos:7
+From:tohara/centos-gcc
+
 
 %labels
 MAINTAINER baber@iastate.edu
@@ -48,7 +49,7 @@ echo "    naming_scheme: '\${PACKAGE}/\${VERSION}'" >> /opt/spack/etc/spack/modu
 
 source $SPACK_ROOT/share/spack/setup-env.sh
 
-spack install gcc@6.5.0
+spack install spades@3.13.0
 
 %runscript
 spack help
